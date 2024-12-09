@@ -1,8 +1,7 @@
 package Commons;
 
-import java.util.logging.LogManager;
-
-import com.mongodb.diagnostics.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LoggerLoad {
 private static Logger logger = LogManager.getLogger();
