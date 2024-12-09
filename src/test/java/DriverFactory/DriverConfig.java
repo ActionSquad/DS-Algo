@@ -12,12 +12,11 @@ import Commons.ConfigReader;
 public class DriverConfig {
 
     static WebDriver driver;
-	static ConfigReader configreader1= new ConfigReader();
 	
-	static String browser = ConfigReader.getBrowser();
-	static String URL = ConfigReader.getAppUrl();
+    static String browser = ConfigReader.getProperty("Browser");
+	static String URL = ConfigReader.getProperty("URL");
 	
-
+	
 	public static WebDriver getdriver()
 	{
 		if(driver==null)
