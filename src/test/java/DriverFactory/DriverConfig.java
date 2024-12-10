@@ -1,4 +1,4 @@
-package DriverFactory;
+package driverFactory;
 
 import java.time.Duration;
 
@@ -7,10 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import Commons.ConfigReader;
+import commons.ConfigReader;
+
 
 public class DriverConfig {
 
+<<<<<<< Updated upstream
     static WebDriver driver;
 	
     static String browser = ConfigReader.getProperty("Browser");
@@ -18,38 +20,44 @@ public class DriverConfig {
 	
 	
 	public static WebDriver getdriver()
+=======
+	static String URL = ConfigReader.getProperty("URL");
+	protected static final  ThreadLocal<WebDriver> ThreadLocaldriver = new ThreadLocal<>();
+	public  static void getdriver(String browser)
+>>>>>>> Stashed changes
 	{
+		WebDriver driver=null;
 		if(driver==null)
-			
 		{
 			if (browser.equalsIgnoreCase("chrome"))
 			{
-				driver = new ChromeDriver();
+				driver= new ChromeDriver();
 			}
 			else if (browser.equalsIgnoreCase("firefox"))
 			{
-				driver = new FirefoxDriver();
+				driver= new FirefoxDriver();
 			}
 			else if (browser.equalsIgnoreCase("edge"))
 			{
-				driver = new EdgeDriver();
+				driver= new EdgeDriver();
 			}
 			else
 			{
-				driver = new ChromeDriver();
+				driver= new ChromeDriver();
 			}
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			driver.get(URL);
 		}
-		return driver;
-		
+		ThreadLocaldriver.set(driver);
+		getDriverInstance().manage().window().maximize();
+		getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		getDriverInstance().get(URL);	
 	}
-	
-	public static WebDriver quitdriver()
+	public static  WebDriver getDriverInstance() {
+		return ThreadLocaldriver.get();	
+	}
+	public static void quitdriver()
 	{
-		driver.manage().deleteAllCookies();
-		driver.quit();
-		return null;
-	}
+		getDriverInstance().manage().deleteAllCookies();
+		getDriverInstance().quit();
+		ThreadLocaldriver.remove();
+   }
 }

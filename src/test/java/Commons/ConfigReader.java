@@ -1,4 +1,4 @@
-package Commons;
+package commons;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ public class ConfigReader {
 	
 	 public static Properties properties; 	 
 	 static {
-	 		try(FileInputStream fileinputstream = new FileInputStream("src/test/resources/TestData/config.properties")){
+	 		try(FileInputStream fileinputstream = new FileInputStream("src/test/resources/utilities/config.properties")){
 	 			
 	 			properties = new Properties();
 	 			properties.load(fileinputstream);

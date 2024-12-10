@@ -1,4 +1,4 @@
-package Commons;
+package commons;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,6 @@ public class ExcelReader {
             return readSheet(sheet);
         }
     }
-
     private List<Map<String, String>> readSheet(Sheet sheet) {
         Row row;
         Cell cell;
